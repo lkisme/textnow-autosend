@@ -89,7 +89,8 @@ const actionFunc = async (username, password, recipient, message, cookieString) 
   const config = require("./config");
 
   const { username, password, recipient, message, cookieString } = config;
-  console.log(`cookie::${cookieString}`)
+  console.log("cookieString")
+  console.log(cookieString)
   const arrUsername = username.split("|");
   const arrPassword = password.split("|");
   if (arrUsername.length === arrPassword.length) {
