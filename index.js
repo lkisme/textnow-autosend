@@ -31,7 +31,7 @@ const actionFunc = async (username, password, recipient, message, cookieString) 
     try {
       console.log("Importing config cookies...");
       
-      cookies = cookieString;
+      cookies = parseCookies(cookieString, 'www.textnow.com');
     } catch (error) {
       console.log("Failed to import config cookies.");
     }
@@ -105,3 +105,11 @@ const actionFunc = async (username, password, recipient, message, cookieString) 
 
   console.log("end...");
 })();
+
+function parseCookies(cookies_str, domain) {
+    return cookies_str.split(';').map(pair => {
+        let name = pair.trim().slice(0, pair.trim().indexOf('='));
+        let value = pair.trim().slice(pair.trim().indexOf('=') + 1);
+        return { name, value, domain };
+    });
+};
