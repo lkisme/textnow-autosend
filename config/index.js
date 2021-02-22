@@ -3,5 +3,5 @@ module.exports = {
   password: process.env.TEXTNOW_PASSWORD || "",
   recipient: process.env.TEXTNOW_RECIPIENT || "(726) 666-0002",
   message: process.env.TEXTNOW_MESSAGE || "autosend message",
-  cookieString: process.env.TEXTNOW_COOKIE_STRING || "",
+  cookiestring: process.env.TEXTNOW_COOKIE_STRING || "",
 };
