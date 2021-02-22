@@ -95,9 +95,10 @@ const actionFunc = async (username, password, recipient, message, cookiestring) 
     console.log("使用cookie发送")
     for (let i = 0, length = arrCookie.length; i < length; i++) {
       const singleCookie = arrCookie[i];
-      console.log(`User:${i} start...`);
-      await actionFunc("null", "null", recipient, message, singleCookie);
-      console.log(`User:${i} end...`);
+      const strUsername = arrUsername[i];
+      console.log(`User:${strUsername} start...`);
+      await actionFunc(strUsername, "null", recipient, message, singleCookie);
+      console.log(`User:${strUsername} end...`);
     }
   } else if (arrUsername.length === arrPassword.length) {
     console.log("使用username发送")
