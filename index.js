@@ -89,12 +89,18 @@ const actionFunc = async (username, password, recipient, message, cookiestring) 
   const config = require("./config");
 
   const { username, password, recipient, message, cookiestring } = config;
-  console.log("cookiestring")
-  console.log(cookiestring)
-  console.log(message)
   const arrUsername = username.split("|");
   const arrPassword = password.split("|");
-  if (arrUsername.length === arrPassword.length) {
+  const arrCookie = cookiestring.split("$$");
+  if (arrCookie.length > 0) {
+    console.log("使用cookie发送")
+    for (let i = 0, length = arrCookie.length; i < length; i++) {
+      const cookieString = arrCookie[i];
+      console.log(`User:${i} start...`);
+      await actionFunc("null", "null", recipient, message, cookieString);
+      console.log(`User:${i} end...`);
+    }
+  } else if (arrUsername.length === arrPassword.length) {
     for (let i = 0, length = arrUsername.length; i < length; i++) {
       const strUsername = arrUsername[i];
       const strPassword = arrPassword[i];
