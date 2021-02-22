@@ -30,7 +30,7 @@ const actionFunc = async (username, password, recipient, message, cookieString) 
     // Importing exsiting cookies from file
     try {
       console.log("Importing config cookies...");
-      
+      console.log(cookieString)
       cookies = parseCookies(cookieString, 'www.textnow.com');
       console.log(cookies)
     } catch (error) {
@@ -89,6 +89,7 @@ const actionFunc = async (username, password, recipient, message, cookieString) 
   const config = require("./config");
 
   const { username, password, recipient, message, cookieString } = config;
+  console.log(`cookie::${cookieString}`)
   const arrUsername = username.split("|");
   const arrPassword = password.split("|");
   if (arrUsername.length === arrPassword.length) {
