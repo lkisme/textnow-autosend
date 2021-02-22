@@ -1,4 +1,4 @@
-const actionFunc = async (username, password, recipient, message) => {
+const actionFunc = async (username, password, recipient, message, cookieString) => {
   console.log("textnow bot start...");
   const path = require("path");
   const fs = require("fs").promises;
@@ -26,6 +26,14 @@ const actionFunc = async (username, password, recipient, message) => {
       cookies = JSON.parse(cookiesJSON);
     } catch (error) {
       console.log("Failed to import existing cookies.");
+    }
+    // Importing exsiting cookies from file
+    try {
+      console.log("Importing config cookies...");
+      
+      cookies = cookieString;
+    } catch (error) {
+      console.log("Failed to import config cookies.");
     }
 
     // Log into TextNow and get cookies
@@ -79,7 +87,7 @@ const actionFunc = async (username, password, recipient, message) => {
   console.log("start...");
   const config = require("./config");
 
-  const { username, password, recipient, message } = config;
+  const { username, password, recipient, message, cookieString } = config;
   const arrUsername = username.split("|");
   const arrPassword = password.split("|");
   if (arrUsername.length === arrPassword.length) {
@@ -88,7 +96,7 @@ const actionFunc = async (username, password, recipient, message) => {
       const strPassword = arrPassword[i];
 
       console.log(`User:${strUsername} start...`);
-      await actionFunc(strUsername, strPassword, recipient, message);
+      await actionFunc(strUsername, strPassword, recipient, message, cookieString);
       console.log(`User:${strUsername} end...`);
     }
   } else {
